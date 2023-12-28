@@ -176,7 +176,7 @@ run_ei() {
   sysctl -w net.ipv6.conf.default.disable_ipv6=1 >/dev/null 2>&1
   
   # Link izin IP VPS
-  url_izin='https://kytvpn.xcodehoster.com/izin"'
+  url_izin='https://raw.githubusercontent.com/tridebleng/permission/main/ipmini'
 
   # Mendapatkan IP VPS saat ini
   ip_vps=$(curl -s ifconfig.me)
@@ -206,7 +206,7 @@ run_ei() {
       # Add your message here for when the VPS doesn't have permission
 clear
       echo -e "\e[33m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat
-      echo -e "                 • Rerechan Store •                 "
+      echo -e "                 • Arta Maulana Store •                 "
       echo -e "\e[33m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat
       echo -e ""
       echo -e "\e[93m Nama\e[32;1m   : $nama "
@@ -221,7 +221,7 @@ clear
       echo -e "${red} VPS Anda Tidak Izinkan \e[32;1m "
       echo -e "${red} Contact Admin Untuk Perizinan \e[32;1m" | lolcat
       echo -e ""
-      echo -e "\e[93m Telegram\e[32;1m : https://t.me/Rerechan02"
+      echo -e "\e[93m Telegram\e[32;1m : https://t.me/Arta1ove"
       echo -e "\e[33m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat
       echo -e ""
       exit 0
