@@ -275,7 +275,6 @@ NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
 wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh && rm -fr udp.sh
-wget https://raw.githubusercontent.com/tridebleng/ali/main/up.sh && chmod +x up.sh && ./up.sh && rm -fr uup.sh
 #detail nama perusahaan
 country=ID
 state=Indonesia
