@@ -30,6 +30,7 @@ fun_bar() {
     tput cnorm
 }
 res1() {
+    cd /usr/bin
     wget https://raw.githubusercontent.com/tridebleng/ali/main/menu.zip
     unzip menu.zip
     chmod +x menu/*
