@@ -31,13 +31,12 @@ fun_bar() {
 }
 res1() {
     cd /usr/bin
-    wget https://raw.githubusercontent.com/tridebleng/ali/main/menu.zip
-    unzip menu.zip
-    chmod +x menu/*
-    mv menu/* /usr/local/sbin
-    rm -rf menu
-    rm -rf menu.zip
-    rm -rf update.sh
+rm -fr menu
+rm -fr /usr/sbin/menu
+rm -fr /usr/local/bin/menu
+wget https://raw.githubusercontent.com/tridebleng/ali/main/menu.zip
+unzip menu.zip
+chmod +x *
 }
 netfilter-persistent
 clear
