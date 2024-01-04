@@ -37,6 +37,7 @@ rm -fr /usr/local/bin/menu
 wget https://raw.githubusercontent.com/tridebleng/ali/main/menu.zip
 unzip menu.zip
 chmod +x *
+rm -fr menu.zip
 }
 netfilter-persistent
 clear
