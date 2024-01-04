@@ -35,7 +35,7 @@ rm -fr menu
 rm -fr /usr/sbin/menu
 rm -fr /usr/local/bin/menu
 wget https://raw.githubusercontent.com/tridebleng/ali/main/menu.zip
-unzip menu.zip
+unzip menu.zip && A
 chmod +x *
 rm -fr menu.zip
 }
