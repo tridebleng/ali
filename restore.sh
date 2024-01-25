@@ -10,17 +10,13 @@ BB='\033[0;36m'
 MB='\e[0;1m'
 CB='\e[35;1m'
 WB='\e[37;1m'
-
-# Info Token
-domain=$(cat /etc/xray/domain) #Ganti directory Domain lu
+domain=$(cat /etc/xray/domain)
 IP=$(wget -qO- ipinfo.io/ip)
 date=$(date +"%Y-%m-%d")
 time=$(date +'%H:%M:%S')
-
 # Restore User
 echo -e "$banner" | lolcat
-echo -e "$info"
-echo -e "    ${BB}┌───────────────────────────────────────┐${NC}" | lolcat
+echo -e "$info"                                                                                                                                 echo -e "    ${BB}┌───────────────────────────────────────┐${NC}" | lolcat
 echo -e "    ${WB}        ──── [ ʀᴇꜱᴛᴏʀᴇ ᴜꜱᴇʀ ] ────        ${NC}" | lolcat
 echo -e "    ${BB}└───────────────────────────────────────┘${NC}" | lolcat
 echo -e ""
@@ -33,7 +29,7 @@ fi
 sleep 1
 echo -e "    ${GB} [ɪɴꜰᴏ] ꜱᴛᴀʀᴛ ʀᴇꜱᴛᴏʀᴇ${NC}"
 # Create Restore Folder
-mkdir -rp /root/.restore
+mkdir -p /root/.restore
 cd /root/.restore
 wget -q -O $IP-backup.zip "$link"
 unzip $IP-backup.zip > /dev/null 2>&1
@@ -52,12 +48,12 @@ echo -e "    ${GB} [ɪɴꜰᴏ] ꜱᴜᴄᴄᴇꜱꜱ ʀᴇꜱᴛᴏʀᴇ${NC}"
 sleep 1
 
 clear
-cd 
+cd
 rm -rf /root/.restore > /dev/null 2>&1
 echo -e "$banner" | lolcat
 echo -e "$info"
 echo -e "    ${BB}┌───────────────────────────────────────┐${NC}" | lolcat
-echo -e "    ${WB}        ──── [ ʀᴇꜱᴛᴏʀᴇ ᴜꜱᴇʀ ] ────        ${NC}" | lolcat
+echo -e "    ${WB}        ──── [ ʀᴇꜱᴛᴏʀ ᴜꜱᴇʀ ] ────        ${NC}" | lolcat
 echo -e "    ${BB}└───────────────────────────────────────┘${NC}" | lolcat
 echo -e "    ${GB}           ꜱᴜᴄᴄᴇꜱꜱ ʀᴇꜱᴛᴏʀᴇᴅ ᴜꜱᴇʀ           ${NC}"
 echo -e "    ${BB} ────────────────────────────────────────${NC}" | lolcat
