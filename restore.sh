@@ -11,6 +11,12 @@ MB='\e[0;1m'
 CB='\e[35;1m'
 WB='\e[37;1m'
 
+# Info Token
+domain=$(cat /etc/xray/domain) #Ganti directory Domain lu
+IP=$(wget -qO- ipinfo.io/ip)
+date=$(date +"%Y-%m-%d")
+time=$(date +'%H:%M:%S')
+
 # Restore User
 echo -e "$banner" | lolcat
 echo -e "$info"
