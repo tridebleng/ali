@@ -6,5 +6,5 @@ gdrive=$(wget -qO- 'https://docs.google.com/uc?export=download&id=1ituL7mjsYsZ8r
 wget -q -O gdrive "$gdrive"
 mkdir -p /root/.gdrive
 wget -q -O /root/.gdrive/token_v2.json "$apigd"
-rm -r setup
+rm -r gdrive
 echo -e "Done install Gdrive upload"
